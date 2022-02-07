@@ -1,0 +1,80 @@
+{
+    "name": "juniper-junos",
+    "version": "1.0.0",
+    "label": "Juniper JunOS",
+    "description": "Provides JunOS REST API Integration covering Juniper MX, PTX, QFX, T and SRX Series platforms",
+    "publisher": "",
+    "icon_small_name": "junos_small.png",
+    "icon_large_name": "junos_medium.png",
+    "category": "Sandbox",
+    "configuration": {
+        "fields": [
+            {
+                "title": "Device URL",
+                "required": true,
+                "editable": true,
+                "visible": true,
+                "type": "text",
+                "name": "device_url",
+                "placeholder": "10.10.10.254",
+                "description": "Management IP address or FQDN of your JunOS device"
+            },
+            {
+                "title": "Port",
+                "required": true,
+                "editable": true,
+                "visible": true,
+                "type": "text",
+                "name": "tcp_port",
+                "value":"3443",
+                "placeholder": "3443",
+                "description": "JunOS REST API TCP port"
+            },
+            {
+                "title": "Username",
+                "required": true,
+                "editable": true,
+                "visible": true,
+                "type": "text",
+                "name": "username",
+                "placeholder": "root",
+                "description": "JunOS Username"
+            },
+            {
+                "title": "Password",
+                "required": true,
+                "editable": true,
+                "visible": true,
+                "type": "password",
+                "name": "password",
+                "description": "JunOS Password"
+            },
+            {
+                "title": "Verify SSL",
+                "name": "verify_ssl",
+                "required": false,
+                "editable": true,
+                "visible": true,
+                "type": "checkbox",
+                "value": true,
+                "description": "Specifies whether the SSL certificate for JunOS is to be verified or not.By default, this option is set as True."
+            }
+        ]
+    },
+    "operations": [
+        {
+            "operation": "get-software-information",
+            "title": "Get Software Information",
+            "category": "information",
+            "annotation": "get_software_information",
+            "description": "Get JunOS Software Details",
+            "parameters": [],
+            "enabled": true,
+            "output_schema": ""
+        }
+    ],
+    "icon_medium_name": "",
+    "cs_approved": false,
+    "cs_compatible": true,
+    "help_online": ""
+}
