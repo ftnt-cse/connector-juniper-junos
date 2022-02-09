@@ -63,12 +63,61 @@
     },
     "operations": [
         {
-            "operation": "get-software-information",
-            "title": "Get Software Information",
+            "operation": "op_action",
+            "title": "Run Operation Command",
             "category": "information",
-            "annotation": "get_software_information",
-            "description": "Get JunOS Software Details",
-            "parameters": [],
+            "annotation": "op_action",
+            "description": "Run JunOS CLI in operation mode to fetch data such as routing table, interfaces system info...etc",
+            "parameters": [
+                {
+                    "title": "Method",
+                    "name": "method",
+                    "type": "select",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "get-software-information",
+                    "options": [
+                        "get-software-information",
+                        "get-route-information",
+                        "get-interface-information",
+                        "get-forwarding-table-information"
+                    ],
+                    "description": "RPC Command to run"
+                },
+                {
+                    "title": "Method Parameters",
+                    "name": "method_params",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "placeholder": "{'interface-name':'cbp0'}",
+                    "description": "Method parameters in JSON"
+                }
+            ],
+            "enabled": true,
+            "output_schema": ""
+        },
+        {
+            "operation": "config_action",
+            "title": "Run Configuration Command",
+            "category": "Configuration",
+            "annotation": "config_action",
+            "description": "Update JunOS Configuration",
+            "parameters": [
+                {
+                    "title": "Request Payload",
+                    "name": "request_payload",
+                    "type": "textarea",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "<lock-configuration/><load-configuration><configuration><system><hostname>NewHostName</hostname></system></configuration></load-configuration><commit/>",
+                    "description": "XML Payload"
+                }
+            ],
             "enabled": true,
             "output_schema": ""
         }
