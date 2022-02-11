@@ -28,7 +28,7 @@
                 "name": "tcp_port",
                 "value":"3443",
                 "placeholder": "3443",
-                "description": "JunOS REST API TCP port"
+                "description": "JunOS REST API TCP/TLSs port"
             },
             {
                 "title": "Username",
