@@ -5,7 +5,7 @@
     "description": "Provides JunOS REST API Integration covering Juniper MX, PTX, QFX, T and SRX Series platforms",
     "publisher": "",
     "icon_small_name": "junos_small.png",
-    "icon_large_name": "junos_medium.png",
+    "icon_large_name": "junos_large.png",
     "category": "Sandbox",
     "configuration": {
         "fields": [
@@ -81,9 +81,21 @@
                         "get-software-information",
                         "get-route-information",
                         "get-interface-information",
-                        "get-forwarding-table-information"
+                        "get-forwarding-table-information",
+                        "get-zones-information",
+                        "get-ccc-information"
                     ],
-                    "description": "RPC Command to run"
+                    "tooltip": "RPC Command to run"
+                },
+                {
+                    "title": "Custom Method",
+                    "name": "custom_method",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "placeholder": "get-interface-information",
+                    "tooltip": "if the command is not in the list above you can use a custom one here. To get the exact command syntax use this example on JunOS: show route|display xml rpc"
                 },
                 {
                     "title": "Method Parameters",
@@ -93,7 +105,7 @@
                     "visible": true,
                     "type": "text",
                     "placeholder": "{'interface-name':'cbp0'}",
-                    "description": "Method parameters in JSON"
+                    "tooltip": "Method parameters in JSON"
                 }
             ],
             "enabled": true,
@@ -115,7 +127,233 @@
                     "required": true,
                     "value": "",
                     "placeholder": "<lock-configuration/><load-configuration><configuration><system><hostname>NewHostName</hostname></system></configuration></load-configuration><commit/>",
-                    "description": "XML Payload"
+                    "tooltip": "XML Payload. Check JunOS NETCONF for the exact syntax"
+                }
+            ],
+            "enabled": true,
+            "output_schema": ""
+        },
+        {
+            "operation": "get_address_set",
+            "title": "Get Address Set",
+            "category": "Configuration",
+            "annotation": "get_address_set",
+            "description": "Get Address Set entries from global address book",
+            "parameters": [
+                {
+                    "title": "Address Set",
+                    "name": "address_set",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "BlockedIPsAddressSet",
+                    "tooltip": "Name of the address set"
+                },
+                {
+                    "title": "Get Entries Count",
+                    "name": "get_count",
+                    "type": "checkbox",
+                    "visible": true,
+                    "editable": true,
+                    "required": false,
+                    "value": false,
+                    "tooltip": "If checked, returns only entries count instead of the entries data"
+                }
+            ],
+            "enabled": true,
+            "output_schema": ""
+        },
+        {
+            "operation": "add_to_address_set",
+            "title": "Add an Object to Global Address Set",
+            "category": "Configuration",
+            "annotation": "add_to_address_book",
+            "description": "Add and IP address, an FQDN or a whildcard to an address set on the Global address book. 1024 entries Max",
+            "parameters": [
+                {
+                    "title": "Address Set",
+                    "name": "address_set",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "BlockedIPsAddressSet",
+                    "tooltip": "Name of the address set"
+                },
+                {
+                    "title": "Object Types",
+                    "name": "object_type",
+                    "type": "select",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "options": [
+                        "ip-prefix",
+                        "dns-name",
+                        "wildcard-address"
+                    ],
+                    "value": "ip-prefix",
+                    "tooltip": "Type of the object(s) to add, only one type is supported at a time. Wildcard format is: A.B.C.D/E.F.G.H"
+                },
+                {
+                    "title": "Object(s) To Add",
+                    "name": "object_to_add",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "10.1.3.1",
+                    "tooltip": "IP address, an FQDN or a wildcard to add, for multiple entries use CSV format such as host1.domain.com,host2.domain.com if the type is dns-name"
+                }
+            ],
+            "enabled": true,
+            "output_schema": ""
+        },
+        {
+            "operation": "delete_from_address_set",
+            "title": "Delete Object from Global Address Set",
+            "category": "Configuration",
+            "annotation": "delete_from_address_set",
+            "description": "Deletes and IP address, an FQDN or a whildcard from the Global address book",
+            "parameters": [
+                {
+                    "title": "Address set",
+                    "name": "address_set",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "BlockedIPsAddressSet",
+                    "tooltip": "Name of the address set"
+                },
+                {
+                    "title": "Object Types",
+                    "name": "object_type",
+                    "type": "select",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "options": [
+                        "ip-prefix",
+                        "dns-name",
+                        "wildcard-address"
+                    ],
+                    "value": "ip-prefix",
+                    "tooltip": "Type of the object(s) to delete, only one type is supported at a time"
+                },
+                {
+                    "title": "Object(s) To Delete",
+                    "name": "object_to_delete",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "10.1.3.1",
+                    "tooltip": "IP address, an FQDN or a wildcard to delete, for multiple entries use CSV format such as host1.domain.com,host2.domain.com if the type is dns-name"
+                }
+            ],
+            "enabled": true,
+            "output_schema": ""
+        },
+        {
+            "operation": "get_prefix_list",
+            "title": "Get Prefix List",
+            "category": "Configuration",
+            "annotation": "get_prefix_list",
+            "description": "Get Prefix List entries",
+            "parameters": [
+                {
+                    "title": "Prefix List",
+                    "name": "prefix_list",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "BlockedIPsPrefixList",
+                    "tooltip": "Name of the Prefix List"
+                },
+                {
+                    "title": "Get Entries Count",
+                    "name": "get_count",
+                    "type": "checkbox",
+                    "visible": true,
+                    "editable": true,
+                    "required": false,
+                    "value": false,
+                    "tooltip": "If checked, returns only entries count instead of the entries data"
+                }
+            ],
+            "enabled": true,
+            "output_schema": ""
+        },
+        {
+            "operation": "add_to_prefix_list",
+            "title": "Add Address(es) to a Prefix List",
+            "category": "Configuration",
+            "annotation": "add_to_prefix_list",
+            "description": "Add IP address(es) to a prefix-list. 85325 entries Max",
+            "parameters": [
+                {
+                    "title": "Prefix List",
+                    "name": "prefix_list",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "BlockedIPsPrefixList",
+                    "tooltip": "Name of the Prefix List"
+                },
+                {
+                    "title": "Address(es) To Add",
+                    "name": "address_to_add",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "10.1.3.1,2001:0db8:0000:0000:0000:8a2e:0370:7334",
+                    "tooltip": "IPv4 or IPv6 Address or Addresses (in CSV) to add to the prefix list"
+                }
+            ],
+            "enabled": true,
+            "output_schema": ""
+        },
+        {
+            "operation": "delete_from_prefix_list",
+            "title": "Delete Address(es) from a Prefix List",
+            "category": "Configuration",
+            "annotation": "delete_from_prefix_list",
+            "description": "Delete IP address(es) from a prefix-list",
+            "parameters": [
+                {
+                    "title": "Prefix List",
+                    "name": "prefix_list",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "BlockedIPsPrefixList",
+                    "tooltip": "Name of the Prefix List"
+                },
+                {
+                    "title": "Address(es) To Delete",
+                    "name": "address_to_delete",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": "",
+                    "placeholder": "10.1.3.1,2001:0db8:0000:0000:0000:8a2e:0370:7334",
+                    "tooltip": "IPv4 or IPv6 Address or Addresses (in CSV) to delete from the prefix list"
                 }
             ],
             "enabled": true,
