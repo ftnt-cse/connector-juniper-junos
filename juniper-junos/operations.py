@@ -1,3 +1,9 @@
+""" Copyright start
+Copyright (C) 2008 - 2022 Fortinet Inc.
+All rights reserved.
+FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+Copyright end """
+
 import requests, logging, json
 from requests.auth import HTTPBasicAuth
 from connectors.core.connector import get_logger, ConnectorError
@@ -6,9 +12,8 @@ from .constants import *
 from requests_toolbelt.utils import dump
 
 logger = get_logger('juniper_junos')
-logger.setLevel(logging.DEBUG) #Comment this for prod
 
-# Globals/Endpoints
+
 
 def _check_health(config):
     try:
@@ -35,7 +40,7 @@ def _api_request(method, endpoint, config, payload={}, header=HTTP_HEADERS, para
             logger.info('Fail To request API {0} response is : {1}'.format(str(url), str(api_response.content)))
             raise ConnectorError('Fail To request API {0} response is : {1}'.format(str(url), str(api_response.content)))
     except Exception as Err:
-        logger.info('API Request Error: {0}'.format(str(Err)))
+        logger.error('API Request Error: {0}'.format(str(Err)))
         raise ConnectorError(Err)
 
 def _get_call(config,params):
@@ -76,7 +81,7 @@ def get_address_set(config,params):
     :param params.get_count: bool : is True returns nothing but items count
     :return: address set data or count
     '''
-    address_set = get_input(params,'address_set',str)
+    address_set = params.get('address_set', None)
     get_count = params.get('get_count', None)
     payload = GET_CONFIG.format(GLOBAL_ADDRESS_SET.format(address_set))
     HTTP_HEADERS.update({'Content-Type': 'application/xml'})
@@ -107,7 +112,7 @@ def _add_delete_address(config,params):
         logger.debug(response)
         return parse_config_xml_response(response)
     except Exception as Err:
-        logger.info('_add_delete_address Error: {0}'.format(str(Err)))
+        logger.error('_add_delete_address Error: {0}'.format(str(Err)))
         raise ConnectorError(Err)
 
 def get_prefix_list(config,params):
@@ -118,7 +123,7 @@ def get_prefix_list(config,params):
     :param params.get_count: bool : is True returns nothing but items count
     :return: address set data or count
     '''
-    prefix_list = get_input(params,'prefix_list',str)
+    prefix_list = params.get('prefix_list', None)
     get_count = params.get('get_count', None)
     payload = GET_CONFIG.format(PREFIX_LIST.format(NAME=prefix_list,PREFIX_LIST=''))
     HTTP_HEADERS.update({'Content-Type': 'application/xml'})

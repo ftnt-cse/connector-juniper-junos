@@ -1,3 +1,9 @@
+""" Copyright start
+Copyright (C) 2008 - 2022 Fortinet Inc.
+All rights reserved.
+FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+Copyright end """
+
 #
 # Utilities
 #
@@ -135,28 +141,6 @@ def parse_op_xml_response(response_data):
     xml_response = re.search(r'\<data.*data\>', response_data, re.DOTALL).group(0)
     if xml_response:
         return xmltodict.parse(xml_response)
-
-def get_input(params, key, type):
-    '''
-    Validates user's input
-    '''
-    ret_val = params.get(key, None)
-    if ret_val:
-        if isinstance(ret_val, bytes):
-            ret_val = ret_val.decode('utf-8')
-        if isinstance(ret_val, type):
-            return ret_val
-        else:
-            logger.info(
-                'Parameter Input Type is Invalid: Parameter is: {0}, Required Parameter Type is: {1}'.format(
-                    str(key), str(type)))
-            raise ConnectorError(
-                'Parameter Input Type is Invalid: Parameter is: {0}, Required Parameter Type is: {1}'.format(str(key),
-                                                                                                             str(type)))
-    else:
-        if ret_val == {} or ret_val == [] or ret_val == 0:
-            return ret_val
-        return None
 
 def get_config(config):
     '''

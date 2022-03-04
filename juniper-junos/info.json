@@ -3,10 +3,10 @@
     "version": "1.0.0",
     "label": "Juniper JunOS",
     "description": "Provides JunOS REST API Integration covering Juniper MX, PTX, QFX, T and SRX Series platforms",
-    "publisher": "",
+    "publisher": "Fortinet CSE",
     "icon_small_name": "junos_small.png",
     "icon_large_name": "junos_large.png",
-    "category": "Sandbox",
+    "category": "Firewall and Network Protection",
     "configuration": {
         "fields": [
             {
@@ -103,7 +103,7 @@
                     "required": false,
                     "editable": true,
                     "visible": true,
-                    "type": "text",
+                    "type": "json",
                     "placeholder": "{'interface-name':'cbp0'}",
                     "tooltip": "Method parameters in JSON"
                 }

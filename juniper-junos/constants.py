@@ -1,3 +1,9 @@
+""" Copyright start
+Copyright (C) 2008 - 2022 Fortinet Inc.
+All rights reserved.
+FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+Copyright end """
+
 JUNOS_URL = '{0}:{1}/rpc{2}'
 HTTP_HEADERS = {'Accept':'application/json'}
 GET_CONFIG = '''
