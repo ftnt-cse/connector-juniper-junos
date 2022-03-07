@@ -46,15 +46,15 @@ def parse_prefix_list_params(params):
     '''
     IP_PREFIX = 'ip-prefix'
     address_list = []
-    prefix_list = get_input(params, 'prefix_list', str)
-    address_to_add = get_input(params, 'address_to_add', str)
-    address_to_delete = get_input(params, 'address_to_delete', str)
+    prefix_list = params.get('prefix_list')
+    address_to_add = params.get('address_to_add')
+    address_to_delete = params.get('address_to_delete')
     target_object = address_to_add if address_to_add else address_to_delete
     if ',' in target_object:
         target_object = target_object.replace(' ', '').split(',')
         for obj in target_object:
             if not input_validator(obj,IP_PREFIX):
-                logger.info('Entered value: {0} is not a valid: {1}'.format(obj,IP_PREFIX))
+                logger.error('Entered value: {0} is not a valid: {1}'.format(obj,IP_PREFIX))
                 raise ConnectorError('Entered value: {0} is not a valid: {1}'.format(obj,IP_PREFIX))
             if address_to_add:
                 address_list.append(ADDRESS_OBJECT['prefix-list-add-item'].format(obj))
@@ -62,7 +62,7 @@ def parse_prefix_list_params(params):
                 address_list.append(ADDRESS_OBJECT['prefix-list-delete-item'].format(obj))
     else:
         if not input_validator(target_object, IP_PREFIX):
-            logger.info('Entered value: {0} is not a valid: {1}'.format(target_object, IP_PREFIX))
+            logger.error('Entered value: {0} is not a valid: {1}'.format(target_object, IP_PREFIX))
             raise ConnectorError('Entered value: {0} is not a valid: {1}'.format(target_object, IP_PREFIX))
         if address_to_add:
             address_list.append(ADDRESS_OBJECT['prefix-list-add-item'].format(target_object))
@@ -85,17 +85,17 @@ def parse_address_set_params(params):
     '''
     address_list = []
     address_name = []
-    address_set = get_input(params, 'address_set', str)
-    object_type = get_input(params, 'object_type', str)
-    object_to_add = get_input(params, 'object_to_add', str)
-    object_to_delete = get_input(params, 'object_to_delete', str)
+    address_set = params.get('address_set')
+    object_type = params.get('object_type')
+    object_to_add = params.get('object_to_add')
+    object_to_delete = params.get('object_to_delete')
     target_object = object_to_add if object_to_add else object_to_delete
 
     if ',' in target_object:
         target_object = target_object.replace(' ', '').split(',')
         for obj in target_object:
             if not input_validator(obj,object_type):
-                logger.info('Entered value: {0} is not a valid: {1}'.format(obj,object_type))
+                logger.error('Entered value: {0} is not a valid: {1}'.format(obj,object_type))
                 raise ConnectorError('Entered value: {0} is not a valid: {1}'.format(obj,object_type))
             if object_to_add:
                 object_definition = ADDRESS_OBJECT[object_type].format(obj)
@@ -106,7 +106,7 @@ def parse_address_set_params(params):
                 address_name.append(ADDRESS_OBJECT['address-set-delete-entry'].format(NAME=obj))
     else:
         if not input_validator(target_object, object_type):
-            logger.info('Entered value: {0} is not a valid: {1}'.format(target_object, object_type))
+            logger.error('Entered value: {0} is not a valid: {1}'.format(target_object, object_type))
             raise ConnectorError('Entered value: {0} is not a valid: {1}'.format(target_object, object_type))
         if object_to_add:
             object_definition = ADDRESS_OBJECT[object_type].format(target_object)
@@ -130,6 +130,10 @@ def parse_config_xml_response(response):
     xml_response = re.findall(r'\<.*\>', response)
     if len(xml_response) > 0:
         return_data = '<response>{0}</response>'.format(''.join(xml_response).replace('\\', ''))
+        json_return_data = xmltodict.parse(return_data)
+        if 'xnm:error' in return_data:
+            logger.error('Request failed with Error: {0}'.format(json_return_data))
+            raise ConnectorError('Request failed with Error: {0}'.format(json_return_data))
         return xmltodict.parse(return_data)
 
 def parse_op_xml_response(response_data):

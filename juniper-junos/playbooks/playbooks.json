@@ -1,0 +1,832 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - juniper-junos - 1.0.0",
+      "description": "",
+      "visible": true,
+      "image": null,
+      "uuid": "cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
+      "id": 245,
+      "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+      "createDate": 1645536433,
+      "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+      "modifyDate": 1645536433,
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Address Set",
+          "aliasName": null,
+          "tag": null,
+          "description": "Returns the items of a specific address set",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1646665341,
+          "collection": "/api/3/workflow_collections/cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/6d933ef5-72e4-45f6-8bd3-efe5af8771cb",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Address Set",
+              "description": null,
+              "arguments": {
+                "name": "Juniper JunOS",
+                "config": "7a8af4a7-4798-4da7-8ad2-394587d672a6",
+                "params": {
+                  "get_count": false,
+                  "address_set": "BL1"
+                },
+                "version": "1.0.0",
+                "connector": "juniper-junos",
+                "operation": "get_address_set",
+                "operationTitle": "Get Address Set",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "27863167-b2a9-450f-9fcc-487899b22c3a",
+              "id": 14711
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "1def69a0-0df7-46ec-b5e1-53d76a2b328e",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "6d933ef5-72e4-45f6-8bd3-efe5af8771cb",
+              "id": 14712
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Prefix List",
+              "targetStep": "/api/3/workflow_steps/27863167-b2a9-450f-9fcc-487899b22c3a",
+              "sourceStep": "/api/3/workflow_steps/6d933ef5-72e4-45f6-8bd3-efe5af8771cb",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "b32f5c83-51fc-4325-ae22-0ff1fd272f2a"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "28643866-6423-4af7-a3d8-daa387620bb1",
+          "recordTags": [],
+          "id": 2752,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1645539468,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1646665342,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Prefix List",
+          "aliasName": null,
+          "tag": null,
+          "description": "Returns the items of a specific Prefix List",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1645543788,
+          "collection": "/api/3/workflow_collections/cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/a3ed1190-45e6-4d74-bd21-475ae18b83df",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Prefix List",
+              "description": null,
+              "arguments": {
+                "name": "Juniper JunOS",
+                "config": "7a8af4a7-4798-4da7-8ad2-394587d672a6",
+                "params": {
+                  "get_count": false,
+                  "prefix_list": "black"
+                },
+                "version": "1.0.0",
+                "connector": "juniper-junos",
+                "operation": "get_prefix_list",
+                "operationTitle": "Get Prefix List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "7129a330-18fa-4c48-96dd-379386da9098",
+              "id": 14710
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "c21253eb-b85a-4318-a5c7-aa614bc40c5c",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "a3ed1190-45e6-4d74-bd21-475ae18b83df",
+              "id": 14709
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Prefix List",
+              "targetStep": "/api/3/workflow_steps/7129a330-18fa-4c48-96dd-379386da9098",
+              "sourceStep": "/api/3/workflow_steps/a3ed1190-45e6-4d74-bd21-475ae18b83df",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "1c182d4d-4c6f-43a3-b202-7a97093a0830"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "4b0fd5b1-7047-4a1a-a92f-9ba161349356",
+          "recordTags": [],
+          "id": 2751,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1645536446,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1645543905,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Add Address To Prefix List",
+          "aliasName": null,
+          "tag": null,
+          "description": "Block IPv4/IPv6 by adding it to a Prefix List",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1645543498,
+          "collection": "/api/3/workflow_collections/cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/0bb0c35b-2744-4974-8c64-ac09985ad731",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Add Addresses to Prefix List",
+              "description": null,
+              "arguments": {
+                "name": "Juniper JunOS",
+                "config": "7a8af4a7-4798-4da7-8ad2-394587d672a6",
+                "params": {
+                  "prefix_list": "black",
+                  "address_to_add": "1.1.1.3,2001:db8:a0b:12f0::1"
+                },
+                "version": "1.0.0",
+                "connector": "juniper-junos",
+                "operation": "add_to_prefix_list",
+                "operationTitle": "Add Address(es) to a Prefix List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "09c14853-996f-4d5d-9844-136206a0033c",
+              "id": 14721
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "7d736d87-c7af-4555-b060-948ac189df3e",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "0bb0c35b-2744-4974-8c64-ac09985ad731",
+              "id": 14722
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Prefix List",
+              "targetStep": "/api/3/workflow_steps/09c14853-996f-4d5d-9844-136206a0033c",
+              "sourceStep": "/api/3/workflow_steps/0bb0c35b-2744-4974-8c64-ac09985ad731",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "54682e9e-d0bc-4bc8-9c39-b2f8ab241765"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "561c0004-bb0c-40aa-b4a1-c914f7c68fc2",
+          "recordTags": [],
+          "id": 2757,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1645542957,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1645543904,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Delete Object From Address Set",
+          "aliasName": null,
+          "tag": null,
+          "description": "Unblock IP/FQDN/Wildcard by deleting it from an Address Set",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1646665159,
+          "collection": "/api/3/workflow_collections/cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/0cafb778-7e9b-4e6d-a38b-e584d8fb3405",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "1941d00c-fcd4-4b77-b3dc-5221942d479c",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "0cafb778-7e9b-4e6d-a38b-e584d8fb3405",
+              "id": 14720
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Delete Object from Address Set",
+              "description": null,
+              "arguments": {
+                "name": "Juniper JunOS",
+                "config": "7a8af4a7-4798-4da7-8ad2-394587d672a6",
+                "params": {
+                  "address_set": "black",
+                  "object_type": "dns-name",
+                  "object_to_delete": "host11.fortinet.com"
+                },
+                "version": "1.0.0",
+                "connector": "juniper-junos",
+                "operation": "delete_from_address_set",
+                "operationTitle": "Delete Object from Global Address Set",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "29de3580-3e06-4e9c-9056-b554c4b469aa",
+              "id": 14719
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Prefix List",
+              "targetStep": "/api/3/workflow_steps/29de3580-3e06-4e9c-9056-b554c4b469aa",
+              "sourceStep": "/api/3/workflow_steps/0cafb778-7e9b-4e6d-a38b-e584d8fb3405",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "5f93cb12-9a5b-4843-ad2c-fa27b77b60b8"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "73b9ed6c-f1cb-479f-8912-c697165e3503",
+          "recordTags": [],
+          "id": 2756,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1645542771,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1646665160,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Run Config Command",
+          "aliasName": null,
+          "tag": null,
+          "description": "Update configuration providing XML config",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1646667997,
+          "collection": "/api/3/workflow_collections/cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/63a31c80-9b25-47a0-90d3-94a8161dd383",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "34b3f0b1-a2a1-4be3-b6cf-0be9e7c17bfe",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "63a31c80-9b25-47a0-90d3-94a8161dd383",
+              "id": 14716
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Run Config Command",
+              "description": null,
+              "arguments": {
+                "name": "Juniper JunOS",
+                "config": "7a8af4a7-4798-4da7-8ad2-394587d672a6",
+                "params": {
+                  "request_payload": "<lock-configuration/>\n<load-configuration>\n<configuration>\n    <security>\n        <address-book>\n            <name>global</name>\n            <address><name>host14.fortinet.com</name><dns-name>hostx.fortinet.com</dns-name></address>\n            <address-set>\n                <name>black</name>\n                <address><name>host14.fortinet.com</name></address>\n            </address-set>\n        </address-book>\n    </security>\n</configuration>\n</load-configuration>\n<commit/>\n<unlock-configuration/>"
+                },
+                "version": "1.0.0",
+                "connector": "juniper-junos",
+                "operation": "config_action",
+                "operationTitle": "Run Configuration Command",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "af7c9037-5fc4-452f-8d03-20df3b64d1ee",
+              "id": 14715
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Prefix List",
+              "targetStep": "/api/3/workflow_steps/af7c9037-5fc4-452f-8d03-20df3b64d1ee",
+              "sourceStep": "/api/3/workflow_steps/63a31c80-9b25-47a0-90d3-94a8161dd383",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "a4e5eac5-b282-4962-9320-cecd79734b13"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "bde0f170-903b-47d3-a8c9-f05766f7b237",
+          "recordTags": [],
+          "id": 2754,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1645540948,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1646667998,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Delete Address From Prefix List",
+          "aliasName": null,
+          "tag": null,
+          "description": "Unblock IPv4/IPv6 by deleting it from a Prefix List",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1645543615,
+          "collection": "/api/3/workflow_collections/cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/d0389120-1796-4446-a6b2-ad75956b37f8",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Delete Addresses from Prefix List",
+              "description": null,
+              "arguments": {
+                "name": "Juniper JunOS",
+                "config": "7a8af4a7-4798-4da7-8ad2-394587d672a6",
+                "params": {
+                  "prefix_list": "black",
+                  "address_to_delete": "1.1.1.3"
+                },
+                "version": "1.0.0",
+                "connector": "juniper-junos",
+                "operation": "delete_from_prefix_list",
+                "operationTitle": "Delete Address(es) from a Prefix List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "5515e5c4-234e-4d91-ae5a-b722b22d156a",
+              "id": 14723
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "671b6f3e-29d6-4bd3-a530-66fee39b3cdf",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "d0389120-1796-4446-a6b2-ad75956b37f8",
+              "id": 14724
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Prefix List",
+              "targetStep": "/api/3/workflow_steps/5515e5c4-234e-4d91-ae5a-b722b22d156a",
+              "sourceStep": "/api/3/workflow_steps/d0389120-1796-4446-a6b2-ad75956b37f8",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "a4dee873-b28b-4675-9273-28af36c7bd41"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "c4ffe2af-4afd-47b4-a592-fd29b5fde547",
+          "recordTags": [],
+          "id": 2758,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1645543545,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1645543905,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Add Object To Address Set",
+          "aliasName": null,
+          "tag": null,
+          "description": "Block IP/FQDN/Wildcard by adding it to an Address Set",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1646668133,
+          "collection": "/api/3/workflow_collections/cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/f192c80c-24ac-4498-8645-7c3795eb4165",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Add Object to Address Set",
+              "description": null,
+              "arguments": {
+                "name": "Juniper JunOS",
+                "config": "7a8af4a7-4798-4da7-8ad2-394587d672a6",
+                "params": {
+                  "address_set": "black",
+                  "object_type": "dns-name",
+                  "object_to_add": "host16.fortinet.com, host16.domain.com"
+                },
+                "version": "1.0.0",
+                "connector": "juniper-junos",
+                "operation": "add_to_address_set",
+                "operationTitle": "Add an Object to Global Address Set",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "65c66d36-bc4d-45dc-b082-cef24ff3ca86",
+              "id": 14717
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "122bb9db-5730-4592-bc2a-3437d667444e",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "f192c80c-24ac-4498-8645-7c3795eb4165",
+              "id": 14718
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Prefix List",
+              "targetStep": "/api/3/workflow_steps/65c66d36-bc4d-45dc-b082-cef24ff3ca86",
+              "sourceStep": "/api/3/workflow_steps/f192c80c-24ac-4498-8645-7c3795eb4165",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "c5e7a89b-68ff-4561-8cf3-675c7b9d0a80"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "e82a6ecd-4599-4e79-89a9-3a30fafcf034",
+          "recordTags": [],
+          "id": 2755,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1645542478,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1646668134,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Run OP Command",
+          "aliasName": null,
+          "tag": null,
+          "description": "Get Data via operation command",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1646667143,
+          "collection": "/api/3/workflow_collections/cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/b9483477-6a70-4ff7-8870-d9842a08b966",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Run Operation Command",
+              "description": null,
+              "arguments": {
+                "name": "Juniper JunOS",
+                "config": "7a8af4a7-4798-4da7-8ad2-394587d672a6",
+                "params": {
+                  "method": "get-software-information",
+                  "custom_method": "",
+                  "method_params": ""
+                },
+                "version": "1.0.0",
+                "connector": "juniper-junos",
+                "operation": "op_action",
+                "operationTitle": "Run Operation Command",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "377ae286-8a14-474e-ad5a-9d9ecae066b5",
+              "id": 14713
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "da53290f-fee0-4616-8419-fbbbdf7d1f42",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "b9483477-6a70-4ff7-8870-d9842a08b966",
+              "id": 14714
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Prefix List",
+              "targetStep": "/api/3/workflow_steps/377ae286-8a14-474e-ad5a-9d9ecae066b5",
+              "sourceStep": "/api/3/workflow_steps/b9483477-6a70-4ff7-8870-d9842a08b966",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "bd9d0a27-69ee-4750-8f1f-02bf34b98d75"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "ea118772-0cf1-4f4b-92c8-4610ac574a8d",
+          "recordTags": [],
+          "id": 2753,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1645539837,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1646667144,
+          "owners": [],
+          "isPrivate": false
+        }
+      ]
+    }
+  ],
+  "exported_tags": []
+}

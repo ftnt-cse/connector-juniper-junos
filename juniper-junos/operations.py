@@ -33,6 +33,7 @@ def _api_request(method, endpoint, config, payload={}, header=HTTP_HEADERS, para
         logger.debug('REQUESTS_DUMP:\n{}'.format(dump.dump_all(api_response).decode('utf-8')))                                        
         if api_response.ok:
             try:
+                logger.debug('Device response is not a valid JSON falling back to str')
                 return api_response.json()
             except:
                 return api_response.content.decode('utf-8')
@@ -55,7 +56,7 @@ def _get_call(config,params):
     if len(method) < 6:
         logger.error('Command cannot be empty, pick either a command or a custom command param')
         raise ConnectorError('Command cannot be empty, pick either a command or a custom command param')
-
+    HTTP_HEADERS.update({'Accept':'application/json','Content-Type': 'application/xml'})
     return _api_request('get', method, config, params=method_params)
 
 def _post_call(config,params):
@@ -71,7 +72,8 @@ def _post_call(config,params):
     if not request_payload:
         logger.error('Payload cannot be empty')
         raise ConnectorError('Payload cannot be empty')
-    return _api_request('post', '', config, payload=request_payload)
+    response = _api_request('post', '', config, payload=request_payload)
+    return parse_config_xml_response(response)
 
 def get_address_set(config,params):
     '''

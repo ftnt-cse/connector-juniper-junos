@@ -1,367 +1,496 @@
 {
-    "name": "juniper-junos",
-    "version": "1.0.0",
-    "label": "Juniper JunOS",
-    "description": "Provides JunOS REST API Integration covering Juniper MX, PTX, QFX, T and SRX Series platforms",
-    "publisher": "Fortinet CSE",
-    "icon_small_name": "junos_small.png",
-    "icon_large_name": "junos_large.png",
-    "category": "Firewall and Network Protection",
-    "configuration": {
-        "fields": [
-            {
-                "title": "Device URL",
-                "required": true,
-                "editable": true,
-                "visible": true,
-                "type": "text",
-                "name": "device_url",
-                "placeholder": "10.10.10.254",
-                "description": "Management IP address or FQDN of your JunOS device"
-            },
-            {
-                "title": "Port",
-                "required": true,
-                "editable": true,
-                "visible": true,
-                "type": "text",
-                "name": "tcp_port",
-                "value":"3443",
-                "placeholder": "3443",
-                "description": "JunOS REST API TCP port"
-            },
-            {
-                "title": "Username",
-                "required": true,
-                "editable": true,
-                "visible": true,
-                "type": "text",
-                "name": "username",
-                "placeholder": "root",
-                "description": "JunOS Username"
-            },
-            {
-                "title": "Password",
-                "required": true,
-                "editable": true,
-                "visible": true,
-                "type": "password",
-                "name": "password",
-                "description": "JunOS Password"
-            },
-            {
-                "title": "Verify SSL",
-                "name": "verify_ssl",
-                "required": false,
-                "editable": true,
-                "visible": true,
-                "type": "checkbox",
-                "value": true,
-                "description": "Specifies whether the SSL certificate for JunOS is to be verified or not.By default, this option is set as True."
-            }
-        ]
+    "name":"juniper-junos",
+    "version":"1.0.0",
+    "label":"Juniper JunOS",
+    "description":"Provides JunOS REST API Integration covering Juniper MX, PTX, QFX, T and SRX Series platforms",
+    "publisher":"Fortinet CSE",
+    "icon_small_name":"junos_small.jpg",
+    "icon_large_name":"junos_large.jpg",
+    "category":"Firewall and Network Protection",
+    "configuration":{
+       "fields":[
+          {
+             "title":"Device URL",
+             "required":true,
+             "editable":true,
+             "visible":true,
+             "type":"text",
+             "name":"device_url",
+             "placeholder":"10.10.10.254",
+             "description":"Management IP address or FQDN of your JunOS device"
+          },
+          {
+             "title":"Port",
+             "required":true,
+             "editable":true,
+             "visible":true,
+             "type":"text",
+             "name":"tcp_port",
+             "value":"3443",
+             "placeholder":"3443",
+             "description":"JunOS REST API TCP port"
+          },
+          {
+             "title":"Username",
+             "required":true,
+             "editable":true,
+             "visible":true,
+             "type":"text",
+             "name":"username",
+             "placeholder":"root",
+             "description":"Username to access the Juniper JunOS device to which you will connect and perform the automated operations"
+          },
+          {
+             "title":"Password",
+             "required":true,
+             "editable":true,
+             "visible":true,
+             "type":"password",
+             "name":"password",
+             "description":"Password to access the Juniper JunOS server to which you will connect and perform the automated operations"
+          },
+          {
+             "title":"Verify SSL",
+             "name":"verify_ssl",
+             "required":false,
+             "editable":true,
+             "visible":true,
+             "type":"checkbox",
+             "value":true,
+             "description":"Specifies whether the SSL certificate for JunOS is to be verified or not.By default, this option is set as True."
+          }
+       ]
     },
-    "operations": [
-        {
-            "operation": "op_action",
-            "title": "Run Operation Command",
-            "category": "information",
-            "annotation": "op_action",
-            "description": "Run JunOS CLI in operation mode to fetch data such as routing table, interfaces system info...etc",
-            "parameters": [
-                {
-                    "title": "Method",
-                    "name": "method",
-                    "type": "select",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "get-software-information",
-                    "options": [
-                        "get-software-information",
-                        "get-route-information",
-                        "get-interface-information",
-                        "get-forwarding-table-information",
-                        "get-zones-information",
-                        "get-ccc-information"
-                    ],
-                    "tooltip": "RPC Command to run"
+    "operations":[
+       {
+          "operation":"op_action",
+          "title":"Run Command",
+          "category":"information",
+          "annotation":"op_action",
+          "description":"Run a CLI command in operation mode on the JunOS console based on the commands and other input parameters you have specified to fetch data such as routing table, interfaces system info, etc...",
+          "parameters":[
+             {
+                "title":"Method",
+                "name":"method",
+                "type":"select",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"get-software-information",
+                "options":[
+                   "get-software-information",
+                   "get-route-information",
+                   "get-interface-information",
+                   "get-forwarding-table-information",
+                   "get-zones-information",
+                   "get-ccc-information"
+                ],
+                "tooltip":"RPC Command to run"
+             },
+             {
+                "title":"Custom Method",
+                "name":"custom_method",
+                "required":false,
+                "editable":true,
+                "visible":true,
+                "type":"text",
+                "placeholder":"get-interface-information",
+                "tooltip":"if the command is not in the list above you can use a custom one here. To get the exact command syntax use this example on JunOS: show route|display xml rpc"
+             },
+             {
+                "title":"Method Parameters",
+                "name":"method_params",
+                "required":false,
+                "editable":true,
+                "visible":true,
+                "type":"json",
+                "placeholder":"{'interface-name':'cbp0'}",
+                "tooltip":"Method parameters in JSON"
+             }
+          ],
+          "enabled":true,
+          "output_schema":""
+       },
+       {
+          "operation":"config_action",
+          "title":"Run Configuration Command",
+          "category":"Configuration",
+          "annotation":"config_action",
+          "description":"Update JunOS Configuration",
+          "parameters":[
+             {
+                "title":"Request Payload",
+                "name":"request_payload",
+                "type":"textarea",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"<lock-configuration/><load-configuration><configuration><system><hostname>NewHostName</hostname></system></configuration></load-configuration><commit/>",
+                "tooltip":"XML Payload. Check JunOS NETCONF for the exact syntax"
+             }
+          ],
+          "enabled":true,
+          "output_schema":{
+             "response":{
+                "commit-results":{
+                   "@xmlns:junos":"",
+                   "routing-engine":{
+                      "name":"re0",
+                      "@junos:style":"",
+                      "commit-success":"",
+                      "commit-revision-information":{
+                         "new-db-revision":"",
+                         "old-db-revision":""
+                      }
+                   }
                 },
-                {
-                    "title": "Custom Method",
-                    "name": "custom_method",
-                    "required": false,
-                    "editable": true,
-                    "visible": true,
-                    "type": "text",
-                    "placeholder": "get-interface-information",
-                    "tooltip": "if the command is not in the list above you can use a custom one here. To get the exact command syntax use this example on JunOS: show route|display xml rpc"
-                },
-                {
-                    "title": "Method Parameters",
-                    "name": "method_params",
-                    "required": false,
-                    "editable": true,
-                    "visible": true,
-                    "type": "json",
-                    "placeholder": "{'interface-name':'cbp0'}",
-                    "tooltip": "Method parameters in JSON"
+                "load-configuration-results":{
+                   "load-success":""
                 }
-            ],
-            "enabled": true,
-            "output_schema": ""
-        },
-        {
-            "operation": "config_action",
-            "title": "Run Configuration Command",
-            "category": "Configuration",
-            "annotation": "config_action",
-            "description": "Update JunOS Configuration",
-            "parameters": [
-                {
-                    "title": "Request Payload",
-                    "name": "request_payload",
-                    "type": "textarea",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "<lock-configuration/><load-configuration><configuration><system><hostname>NewHostName</hostname></system></configuration></load-configuration><commit/>",
-                    "tooltip": "XML Payload. Check JunOS NETCONF for the exact syntax"
+             }
+          }
+       },
+       {
+          "operation":"get_address_set",
+          "title":"Get Address Set",
+          "category":"Configuration",
+          "annotation":"get_address_set",
+          "description":"Get Address Set entries from global address book",
+          "parameters":[
+             {
+                "title":"Address Set",
+                "name":"address_set",
+                "type":"text",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"BlockedIPsAddressSet",
+                "tooltip":"Name of the address set"
+             },
+             {
+                "title":"Get Entries Count",
+                "name":"get_count",
+                "type":"checkbox",
+                "visible":true,
+                "editable":true,
+                "required":false,
+                "value":false,
+                "tooltip":"If checked, returns only entries count instead of the entries data"
+             }
+          ],
+          "enabled":true,
+          "output_schema":{
+             "data":{
+                "@xmlns:junos":"",
+                "configuration":{
+                   "security":{
+                      "address-book":{
+                         "name":"",
+                         "address-set":{
+                            "name":"",
+                            "address":{
+                               "name":""
+                            }
+                         }
+                      }
+                   },
+                   "@junos:commit-user":"",
+                   "@junos:commit-seconds":"",
+                   "@junos:commit-localtime":""
                 }
-            ],
-            "enabled": true,
-            "output_schema": ""
-        },
-        {
-            "operation": "get_address_set",
-            "title": "Get Address Set",
-            "category": "Configuration",
-            "annotation": "get_address_set",
-            "description": "Get Address Set entries from global address book",
-            "parameters": [
-                {
-                    "title": "Address Set",
-                    "name": "address_set",
-                    "type": "text",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "BlockedIPsAddressSet",
-                    "tooltip": "Name of the address set"
+             }
+          }
+       },
+       {
+          "operation":"add_to_address_set",
+          "title":"Add an Object to Global Address Set",
+          "category":"Configuration",
+          "annotation":"add_to_address_book",
+          "description":"Add and IP address, an FQDN or a whildcard to an address set on the Global address book. 1024 entries Max",
+          "parameters":[
+             {
+                "title":"Address Set",
+                "name":"address_set",
+                "type":"text",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"BlockedIPsAddressSet",
+                "tooltip":"Name of the address set"
+             },
+             {
+                "title":"Object Types",
+                "name":"object_type",
+                "type":"select",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "options":[
+                   "ip-prefix",
+                   "dns-name",
+                   "wildcard-address"
+                ],
+                "value":"ip-prefix",
+                "tooltip":"Type of the object(s) to add, only one type is supported at a time. Wildcard format is: A.B.C.D/E.F.G.H"
+             },
+             {
+                "title":"Object(s) To Add",
+                "name":"object_to_add",
+                "type":"text",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"10.1.3.1",
+                "tooltip":"IP address, an FQDN or a wildcard to add, for multiple entries use CSV format such as host1.domain.com,host2.domain.com if the type is dns-name"
+             }
+          ],
+          "enabled":true,
+          "output_schema":{
+             "response":{
+                "commit-results":{
+                   "@xmlns:junos":"",
+                   "routing-engine":{
+                      "name":"re0",
+                      "@junos:style":"",
+                      "commit-success":"",
+                      "commit-revision-information":{
+                         "new-db-revision":"",
+                         "old-db-revision":""
+                      }
+                   }
                 },
-                {
-                    "title": "Get Entries Count",
-                    "name": "get_count",
-                    "type": "checkbox",
-                    "visible": true,
-                    "editable": true,
-                    "required": false,
-                    "value": false,
-                    "tooltip": "If checked, returns only entries count instead of the entries data"
+                "load-configuration-results":{
+                   "load-success":""
                 }
-            ],
-            "enabled": true,
-            "output_schema": ""
-        },
-        {
-            "operation": "add_to_address_set",
-            "title": "Add an Object to Global Address Set",
-            "category": "Configuration",
-            "annotation": "add_to_address_book",
-            "description": "Add and IP address, an FQDN or a whildcard to an address set on the Global address book. 1024 entries Max",
-            "parameters": [
-                {
-                    "title": "Address Set",
-                    "name": "address_set",
-                    "type": "text",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "BlockedIPsAddressSet",
-                    "tooltip": "Name of the address set"
+             }
+          }
+       },
+       {
+          "operation":"delete_from_address_set",
+          "title":"Delete Object from Global Address Set",
+          "category":"Configuration",
+          "annotation":"delete_from_address_set",
+          "description":"Deletes and IP address, an FQDN or a whildcard from the Global address book",
+          "parameters":[
+             {
+                "title":"Address set",
+                "name":"address_set",
+                "type":"text",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"BlockedIPsAddressSet",
+                "tooltip":"Name of the address set"
+             },
+             {
+                "title":"Object Types",
+                "name":"object_type",
+                "type":"select",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "options":[
+                   "ip-prefix",
+                   "dns-name",
+                   "wildcard-address"
+                ],
+                "value":"ip-prefix",
+                "tooltip":"Type of the object(s) to delete, only one type is supported at a time"
+             },
+             {
+                "title":"Object(s) To Delete",
+                "name":"object_to_delete",
+                "type":"text",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"10.1.3.1",
+                "tooltip":"IP address, an FQDN or a wildcard to delete, for multiple entries use CSV format such as host1.domain.com,host2.domain.com if the type is dns-name"
+             }
+          ],
+          "enabled":true,
+          "output_schema":{
+             "response":{
+                "commit-results":{
+                   "@xmlns:junos":"",
+                   "routing-engine":{
+                      "name":"re0",
+                      "@junos:style":"",
+                      "commit-success":"",
+                      "commit-revision-information":{
+                         "new-db-revision":"",
+                         "old-db-revision":""
+                      }
+                   }
                 },
-                {
-                    "title": "Object Types",
-                    "name": "object_type",
-                    "type": "select",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "options": [
-                        "ip-prefix",
-                        "dns-name",
-                        "wildcard-address"
-                    ],
-                    "value": "ip-prefix",
-                    "tooltip": "Type of the object(s) to add, only one type is supported at a time. Wildcard format is: A.B.C.D/E.F.G.H"
-                },
-                {
-                    "title": "Object(s) To Add",
-                    "name": "object_to_add",
-                    "type": "text",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "10.1.3.1",
-                    "tooltip": "IP address, an FQDN or a wildcard to add, for multiple entries use CSV format such as host1.domain.com,host2.domain.com if the type is dns-name"
+                "load-configuration-results":{
+                   "load-success":""
                 }
-            ],
-            "enabled": true,
-            "output_schema": ""
-        },
-        {
-            "operation": "delete_from_address_set",
-            "title": "Delete Object from Global Address Set",
-            "category": "Configuration",
-            "annotation": "delete_from_address_set",
-            "description": "Deletes and IP address, an FQDN or a whildcard from the Global address book",
-            "parameters": [
-                {
-                    "title": "Address set",
-                    "name": "address_set",
-                    "type": "text",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "BlockedIPsAddressSet",
-                    "tooltip": "Name of the address set"
-                },
-                {
-                    "title": "Object Types",
-                    "name": "object_type",
-                    "type": "select",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "options": [
-                        "ip-prefix",
-                        "dns-name",
-                        "wildcard-address"
-                    ],
-                    "value": "ip-prefix",
-                    "tooltip": "Type of the object(s) to delete, only one type is supported at a time"
-                },
-                {
-                    "title": "Object(s) To Delete",
-                    "name": "object_to_delete",
-                    "type": "text",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "10.1.3.1",
-                    "tooltip": "IP address, an FQDN or a wildcard to delete, for multiple entries use CSV format such as host1.domain.com,host2.domain.com if the type is dns-name"
+             }
+          }
+       },
+       {
+          "operation":"get_prefix_list",
+          "title":"Get Prefix List",
+          "category":"Configuration",
+          "annotation":"get_prefix_list",
+          "description":"Get Prefix List IP addresses entries from the specified prefix list name. If Get_Entries_Count is selected the action returns the number of entries instead of the IPs themselves",
+          "parameters":[
+             {
+                "title":"Prefix List",
+                "name":"prefix_list",
+                "type":"text",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"BlockedIPsPrefixList",
+                "tooltip":"Name of the Prefix List"
+             },
+             {
+                "title":"Get Entries Count",
+                "name":"get_count",
+                "type":"checkbox",
+                "visible":true,
+                "editable":true,
+                "required":false,
+                "value":false,
+                "tooltip":"If checked, returns only entries count instead of the entries data"
+             }
+          ],
+          "enabled":true,
+          "output_schema":{
+             "data":{
+                "@xmlns:junos":"",
+                "configuration":{
+                   "policy-options":{
+                      "prefix-list":{
+                         "name":"",
+                         "prefix-list-item":[
+                            {
+                               "name":""
+                            }
+                         ]
+                      }
+                   },
+                   "@junos:commit-user":"",
+                   "@junos:commit-seconds":"",
+                   "@junos:commit-localtime":""
                 }
-            ],
-            "enabled": true,
-            "output_schema": ""
-        },
-        {
-            "operation": "get_prefix_list",
-            "title": "Get Prefix List",
-            "category": "Configuration",
-            "annotation": "get_prefix_list",
-            "description": "Get Prefix List entries",
-            "parameters": [
-                {
-                    "title": "Prefix List",
-                    "name": "prefix_list",
-                    "type": "text",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "BlockedIPsPrefixList",
-                    "tooltip": "Name of the Prefix List"
+             }
+          }
+       },
+       {
+          "operation":"add_to_prefix_list",
+          "title":"Add Address(es) to a Prefix List",
+          "category":"Configuration",
+          "annotation":"add_to_prefix_list",
+          "description":"Add IP address(es) to a prefix-list. 85325 entries Max",
+          "parameters":[
+             {
+                "title":"Prefix List",
+                "name":"prefix_list",
+                "type":"text",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"BlockedIPsPrefixList",
+                "tooltip":"Name of the Prefix List"
+             },
+             {
+                "title":"Address(es) To Add",
+                "name":"address_to_add",
+                "type":"text",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"10.1.3.1,2001:0db8:0000:0000:0000:8a2e:0370:7334",
+                "tooltip":"IPv4 or IPv6 Address or Addresses (in CSV) to add to the prefix list"
+             }
+          ],
+          "enabled":true,
+          "output_schema":{
+             "response":{
+                "commit-results":{
+                   "@xmlns:junos":"",
+                   "routing-engine":{
+                      "name":"re0",
+                      "@junos:style":"",
+                      "commit-success":"",
+                      "commit-revision-information":{
+                         "new-db-revision":"",
+                         "old-db-revision":""
+                      }
+                   }
                 },
-                {
-                    "title": "Get Entries Count",
-                    "name": "get_count",
-                    "type": "checkbox",
-                    "visible": true,
-                    "editable": true,
-                    "required": false,
-                    "value": false,
-                    "tooltip": "If checked, returns only entries count instead of the entries data"
+                "load-configuration-results":{
+                   "load-success":""
                 }
-            ],
-            "enabled": true,
-            "output_schema": ""
-        },
-        {
-            "operation": "add_to_prefix_list",
-            "title": "Add Address(es) to a Prefix List",
-            "category": "Configuration",
-            "annotation": "add_to_prefix_list",
-            "description": "Add IP address(es) to a prefix-list. 85325 entries Max",
-            "parameters": [
-                {
-                    "title": "Prefix List",
-                    "name": "prefix_list",
-                    "type": "text",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "BlockedIPsPrefixList",
-                    "tooltip": "Name of the Prefix List"
+             }
+          }
+       },
+       {
+          "operation":"delete_from_prefix_list",
+          "title":"Delete Address(es) from a Prefix List",
+          "category":"Configuration",
+          "annotation":"delete_from_prefix_list",
+          "description":"Delete IP address(es) from a prefix-list",
+          "parameters":[
+             {
+                "title":"Prefix List",
+                "name":"prefix_list",
+                "type":"text",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"BlockedIPsPrefixList",
+                "tooltip":"Name of the Prefix List"
+             },
+             {
+                "title":"Address(es) To Delete",
+                "name":"address_to_delete",
+                "type":"text",
+                "visible":true,
+                "editable":true,
+                "required":true,
+                "value":"",
+                "placeholder":"10.1.3.1,2001:0db8:0000:0000:0000:8a2e:0370:7334",
+                "tooltip":"IPv4 or IPv6 Address or Addresses (in CSV) to delete from the prefix list"
+             }
+          ],
+          "enabled":true,
+          "output_schema":{
+             "response":{
+                "commit-results":{
+                   "@xmlns:junos":"",
+                   "routing-engine":{
+                      "name":"re0",
+                      "@junos:style":"",
+                      "commit-success":"",
+                      "commit-revision-information":{
+                         "new-db-revision":"",
+                         "old-db-revision":""
+                      }
+                   }
                 },
-                {
-                    "title": "Address(es) To Add",
-                    "name": "address_to_add",
-                    "type": "text",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "10.1.3.1,2001:0db8:0000:0000:0000:8a2e:0370:7334",
-                    "tooltip": "IPv4 or IPv6 Address or Addresses (in CSV) to add to the prefix list"
+                "load-configuration-results":{
+                   "load-success":""
                 }
-            ],
-            "enabled": true,
-            "output_schema": ""
-        },
-        {
-            "operation": "delete_from_prefix_list",
-            "title": "Delete Address(es) from a Prefix List",
-            "category": "Configuration",
-            "annotation": "delete_from_prefix_list",
-            "description": "Delete IP address(es) from a prefix-list",
-            "parameters": [
-                {
-                    "title": "Prefix List",
-                    "name": "prefix_list",
-                    "type": "text",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "BlockedIPsPrefixList",
-                    "tooltip": "Name of the Prefix List"
-                },
-                {
-                    "title": "Address(es) To Delete",
-                    "name": "address_to_delete",
-                    "type": "text",
-                    "visible": true,
-                    "editable": true,
-                    "required": true,
-                    "value": "",
-                    "placeholder": "10.1.3.1,2001:0db8:0000:0000:0000:8a2e:0370:7334",
-                    "tooltip": "IPv4 or IPv6 Address or Addresses (in CSV) to delete from the prefix list"
-                }
-            ],
-            "enabled": true,
-            "output_schema": ""
-        }
+             }
+          }
+       }
     ],
-    "icon_medium_name": "",
-    "cs_approved": false,
-    "cs_compatible": true,
-    "help_online": ""
-}
+    "icon_medium_name":"",
+    "cs_approved":false,
+    "cs_compatible":true,
+    "help_online":""
+ }
