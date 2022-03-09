@@ -150,8 +150,7 @@ def get_config(config):
     '''
     Returns JunOS config attributes
     '''
-    device_url = config.get('device_url')[:-1] if config.get('device_url')[-1] == '/' else config.get('device_url')
-    device_url = device_url.strip()
+    device_url = config.get('device_url').strip('/').strip()
     tcp_port = config.get('tcp_port')
     username = config.get('username')
     password = config.get('password')

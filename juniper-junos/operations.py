@@ -23,6 +23,7 @@ def _check_health(config):
         logger.exception(str(Err))
         raise ConnectorError(str(Err))
 
+
 def _api_request(method, endpoint, config, payload={}, header=HTTP_HEADERS, params={}):
     try:
         device_url, tcp_port, username, password, verify_ssl = get_config(config)
@@ -44,6 +45,7 @@ def _api_request(method, endpoint, config, payload={}, header=HTTP_HEADERS, para
         logger.error('API Request Error: {0}'.format(str(Err)))
         raise ConnectorError(Err)
 
+
 def _get_call(config,params):
     '''
     Process GET API Calls typically used for operational mode commands (fetch data)
@@ -58,6 +60,7 @@ def _get_call(config,params):
         raise ConnectorError('Command cannot be empty, pick either a command or a custom command param')
     HTTP_HEADERS.update({'Accept':'application/json','Content-Type': 'application/xml'})
     return _api_request('get', method, config, params=method_params)
+
 
 def _post_call(config,params):
     '''
@@ -74,6 +77,7 @@ def _post_call(config,params):
         raise ConnectorError('Payload cannot be empty')
     response = _api_request('post', '', config, payload=request_payload)
     return parse_config_xml_response(response)
+
 
 def get_address_set(config,params):
     '''
@@ -98,6 +102,7 @@ def get_address_set(config,params):
         logger.info('get_address_set Error: {0}'.format(str(Err)))
         raise ConnectorError(Err)
 
+
 def _add_delete_address(config,params):
     '''
     Adds to or Deletes from an address set within the global address book
@@ -116,6 +121,7 @@ def _add_delete_address(config,params):
     except Exception as Err:
         logger.error('_add_delete_address Error: {0}'.format(str(Err)))
         raise ConnectorError(Err)
+
 
 def get_prefix_list(config,params):
     '''
@@ -140,6 +146,7 @@ def get_prefix_list(config,params):
         logger.info('get_prefix_list Error: {0}'.format(str(Err)))
         raise ConnectorError(Err)
 
+
 def _add_delete_prefix_list(config,params):
     '''
     Adds to or Deletes items from a prefix list
@@ -158,6 +165,7 @@ def _add_delete_prefix_list(config,params):
     except Exception as Err:
         logger.info('_add_delete_prefix_list Error: {0}'.format(str(Err)))
         raise ConnectorError(Err)
+
 
 operations = {
     'op_action': _get_call,

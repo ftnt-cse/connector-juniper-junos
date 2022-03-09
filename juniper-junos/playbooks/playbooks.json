@@ -3,16 +3,16 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - juniper-junos - 1.0.0",
-      "description": "",
+      "name": "Sample - Juniper JunOS - 1.0.0",
+      "description": "Provides JunOS REST API Integration covering Juniper MX, PTX, QFX, T and SRX Series platforms",
       "visible": true,
-      "image": null,
+      "image": "/api/3/images/79fc207c-8391-4a84-8bbe-5554e0489ec4",
       "uuid": "cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
-      "id": 245,
-      "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-      "createDate": 1645536433,
+      "id": 254,
+      "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+      "createDate": 1646668417,
       "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-      "modifyDate": 1645536433,
+      "modifyDate": 1646816187,
       "recordTags": [],
       "workflows": [
         {
@@ -56,7 +56,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "uuid": "27863167-b2a9-450f-9fcc-487899b22c3a",
-              "id": 14711
+              "id": 15100
             },
             {
               "@type": "WorkflowStep",
@@ -91,7 +91,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "6d933ef5-72e4-45f6-8bd3-efe5af8771cb",
-              "id": 14712
+              "id": 15101
             }
           ],
           "routes": [
@@ -108,11 +108,11 @@
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "28643866-6423-4af7-a3d8-daa387620bb1",
           "recordTags": [],
-          "id": 2752,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1645539468,
-          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1646665342,
+          "id": 2841,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1646668417,
+          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "modifyDate": 1646668417,
           "owners": [],
           "isPrivate": false
         },
@@ -157,7 +157,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "uuid": "7129a330-18fa-4c48-96dd-379386da9098",
-              "id": 14710
+              "id": 15102
             },
             {
               "@type": "WorkflowStep",
@@ -192,7 +192,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "a3ed1190-45e6-4d74-bd21-475ae18b83df",
-              "id": 14709
+              "id": 15103
             }
           ],
           "routes": [
@@ -209,11 +209,11 @@
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "4b0fd5b1-7047-4a1a-a92f-9ba161349356",
           "recordTags": [],
-          "id": 2751,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1645536446,
-          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1645543905,
+          "id": 2842,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1646668417,
+          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "modifyDate": 1646668417,
           "owners": [],
           "isPrivate": false
         },
@@ -230,7 +230,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1645543498,
+          "lastModifyDate": 1646816235,
           "collection": "/api/3/workflow_collections/cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/0bb0c35b-2744-4974-8c64-ac09985ad731",
@@ -244,7 +244,7 @@
                 "config": "7a8af4a7-4798-4da7-8ad2-394587d672a6",
                 "params": {
                   "prefix_list": "black",
-                  "address_to_add": "1.1.1.3,2001:db8:a0b:12f0::1"
+                  "address_to_add": "1.1.3.4,2001:db8:a0b:12f1::2"
                 },
                 "version": "1.0.0",
                 "connector": "juniper-junos",
@@ -258,7 +258,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "uuid": "09c14853-996f-4d5d-9844-136206a0033c",
-              "id": 14721
+              "id": 15104
             },
             {
               "@type": "WorkflowStep",
@@ -293,7 +293,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "0bb0c35b-2744-4974-8c64-ac09985ad731",
-              "id": 14722
+              "id": 15105
             }
           ],
           "routes": [
@@ -310,11 +310,11 @@
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "561c0004-bb0c-40aa-b4a1-c914f7c68fc2",
           "recordTags": [],
-          "id": 2757,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1645542957,
+          "id": 2843,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1646668417,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1645543904,
+          "modifyDate": 1646816236,
           "owners": [],
           "isPrivate": false
         },
@@ -369,7 +369,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "0cafb778-7e9b-4e6d-a38b-e584d8fb3405",
-              "id": 14720
+              "id": 15106
             },
             {
               "@type": "WorkflowStep",
@@ -395,7 +395,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "uuid": "29de3580-3e06-4e9c-9056-b554c4b469aa",
-              "id": 14719
+              "id": 15107
             }
           ],
           "routes": [
@@ -412,11 +412,11 @@
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "73b9ed6c-f1cb-479f-8912-c697165e3503",
           "recordTags": [],
-          "id": 2756,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1645542771,
-          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1646665160,
+          "id": 2844,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1646668417,
+          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "modifyDate": 1646668417,
           "owners": [],
           "isPrivate": false
         },
@@ -471,7 +471,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "63a31c80-9b25-47a0-90d3-94a8161dd383",
-              "id": 14716
+              "id": 15108
             },
             {
               "@type": "WorkflowStep",
@@ -495,7 +495,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "uuid": "af7c9037-5fc4-452f-8d03-20df3b64d1ee",
-              "id": 14715
+              "id": 15109
             }
           ],
           "routes": [
@@ -512,11 +512,11 @@
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "bde0f170-903b-47d3-a8c9-f05766f7b237",
           "recordTags": [],
-          "id": 2754,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1645540948,
-          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1646667998,
+          "id": 2845,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1646668417,
+          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "modifyDate": 1646668417,
           "owners": [],
           "isPrivate": false
         },
@@ -561,7 +561,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "uuid": "5515e5c4-234e-4d91-ae5a-b722b22d156a",
-              "id": 14723
+              "id": 15110
             },
             {
               "@type": "WorkflowStep",
@@ -596,7 +596,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "d0389120-1796-4446-a6b2-ad75956b37f8",
-              "id": 14724
+              "id": 15111
             }
           ],
           "routes": [
@@ -613,11 +613,11 @@
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "c4ffe2af-4afd-47b4-a592-fd29b5fde547",
           "recordTags": [],
-          "id": 2758,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1645543545,
-          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1645543905,
+          "id": 2846,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1646668417,
+          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "modifyDate": 1646668417,
           "owners": [],
           "isPrivate": false
         },
@@ -663,7 +663,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "uuid": "65c66d36-bc4d-45dc-b082-cef24ff3ca86",
-              "id": 14717
+              "id": 15112
             },
             {
               "@type": "WorkflowStep",
@@ -698,7 +698,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "f192c80c-24ac-4498-8645-7c3795eb4165",
-              "id": 14718
+              "id": 15113
             }
           ],
           "routes": [
@@ -715,11 +715,11 @@
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "e82a6ecd-4599-4e79-89a9-3a30fafcf034",
           "recordTags": [],
-          "id": 2755,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1645542478,
-          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1646668134,
+          "id": 2847,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1646668417,
+          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "modifyDate": 1646668417,
           "owners": [],
           "isPrivate": false
         },
@@ -736,7 +736,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1646667143,
+          "lastModifyDate": 1646816116,
           "collection": "/api/3/workflow_collections/cd6bf4c8-9bcf-4015-b93a-833fcdce4c82",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/b9483477-6a70-4ff7-8870-d9842a08b966",
@@ -749,9 +749,9 @@
                 "name": "Juniper JunOS",
                 "config": "7a8af4a7-4798-4da7-8ad2-394587d672a6",
                 "params": {
-                  "method": "get-software-information",
-                  "custom_method": "",
-                  "method_params": ""
+                  "method": "get-route-information",
+                  "method_params": "",
+                  "command_to_run": "Common Commands"
                 },
                 "version": "1.0.0",
                 "connector": "juniper-junos",
@@ -765,7 +765,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "uuid": "377ae286-8a14-474e-ad5a-9d9ecae066b5",
-              "id": 14713
+              "id": 15114
             },
             {
               "@type": "WorkflowStep",
@@ -800,7 +800,7 @@
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "b9483477-6a70-4ff7-8870-d9842a08b966",
-              "id": 14714
+              "id": 15115
             }
           ],
           "routes": [
@@ -817,11 +817,11 @@
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "ea118772-0cf1-4f4b-92c8-4610ac574a8d",
           "recordTags": [],
-          "id": 2753,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1645539837,
+          "id": 2848,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1646668417,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1646667144,
+          "modifyDate": 1646816117,
           "owners": [],
           "isPrivate": false
         }

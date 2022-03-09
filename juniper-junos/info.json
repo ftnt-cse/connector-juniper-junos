@@ -62,55 +62,75 @@
        ]
     },
     "operations":[
-       {
-          "operation":"op_action",
-          "title":"Run Command",
-          "category":"information",
-          "annotation":"op_action",
-          "description":"Run a CLI command in operation mode on the JunOS console based on the commands and other input parameters you have specified to fetch data such as routing table, interfaces system info, etc...",
-          "parameters":[
-             {
-                "title":"Method",
-                "name":"method",
-                "type":"select",
-                "visible":true,
-                "editable":true,
-                "required":true,
-                "value":"get-software-information",
-                "options":[
-                   "get-software-information",
-                   "get-route-information",
-                   "get-interface-information",
-                   "get-forwarding-table-information",
-                   "get-zones-information",
-                   "get-ccc-information"
-                ],
-                "tooltip":"RPC Command to run"
-             },
-             {
-                "title":"Custom Method",
-                "name":"custom_method",
-                "required":false,
-                "editable":true,
-                "visible":true,
-                "type":"text",
-                "placeholder":"get-interface-information",
-                "tooltip":"if the command is not in the list above you can use a custom one here. To get the exact command syntax use this example on JunOS: show route|display xml rpc"
-             },
-             {
-                "title":"Method Parameters",
-                "name":"method_params",
-                "required":false,
-                "editable":true,
-                "visible":true,
-                "type":"json",
-                "placeholder":"{'interface-name':'cbp0'}",
-                "tooltip":"Method parameters in JSON"
-             }
-          ],
-          "enabled":true,
-          "output_schema":""
-       },
+      {
+         "operation":"op_action",
+         "title":"Run Command",
+         "category":"information",
+         "annotation":"op_action",
+         "description":"Run a CLI command in operation mode on the\u202fJunOS console based on the commands and other input parameters you have specified to fetch data such as routing table, interfaces system info, etc...",
+         "parameters":[
+            {
+               "title":"Command to Run",
+               "type":"select",
+               "name":"command_to_run",
+               "description":"Command to execute. You can select from the Methods list of use your own by selecting Custom Method",
+               "options":[
+                  "Common Commands",
+                  "Custom Method"
+               ],
+               "onchange":{
+                  "Common Commands":[
+                     {
+                        "title":"Method",
+                        "name":"method",
+                        "type":"select",
+                        "visible":true,
+                        "editable":true,
+                        "required":false,
+                        "value":"get-software-information",
+                        "options":[
+                           "get-software-information",
+                           "get-route-information",
+                           "get-interface-information",
+                           "get-forwarding-table-information",
+                           "get-zones-information",
+                           "get-ccc-information"
+                        ],
+                        "tooltip":"RPC Command to run"
+                     }
+                  ],
+                  "Custom Method":[
+                     {
+                        "title":"Custom Method",
+                        "name":"custom_method",
+                        "required":false,
+                        "editable":true,
+                        "visible":true,
+                        "type":"text",
+                        "placeholder":"get-interface-information",
+                        "tooltip":"if the command is not in the list above you can use a custom one here. To get the exact command syntax use this example on JunOS: show route|display xml rpc"
+                     }
+                  ]
+               },
+               "required":true,
+               "editable":true,
+               "visible":true,
+               "value":"Common Commands"
+            },
+            {
+               "title":"Method Parameters",
+               "name":"method_params",
+               "required":false,
+               "editable":true,
+               "visible":true,
+               "type":"json",
+               "placeholder":"{'interface-name':'cbp0'}",
+               "tooltip":"Method parameters in JSON"
+            }
+         ],
+         "enabled":true,
+         "output_schema":""
+      },
        {
           "operation":"config_action",
           "title":"Run Configuration Command",
